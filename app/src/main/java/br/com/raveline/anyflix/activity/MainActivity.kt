@@ -1,7 +1,6 @@
 package br.com.raveline.anyflix.activity
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
@@ -28,9 +27,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
@@ -40,29 +39,16 @@ import br.com.raveline.anyflix.navigation.homeRoute
 import br.com.raveline.anyflix.navigation.movieDetailsRouteFullpath
 import br.com.raveline.anyflix.navigation.myListRoute
 import br.com.raveline.anyflix.navigation.navigateToBottomAppBarItem
-import br.com.raveline.anyflix.network.services.MovieService
 import br.com.raveline.anyflix.ui.components.AnyflixBottomAppBar
 import br.com.raveline.anyflix.ui.components.BottomAppBarItem
 import br.com.raveline.anyflix.ui.theme.AnyFlixTheme
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    private val TAG: String = "TAG_"+MainActivity::class.java.name
-
-    @Inject
-    lateinit var movieService: MovieService
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        lifecycleScope.launch(IO) {
-            val movies = movieService.getAllMovies()
-        }
 
         setContent {
             AnyFlixTheme {
@@ -118,11 +104,11 @@ fun AnyflixApp(
         topAppBarTitle = {
             when (currentRoute) {
                 myListRoute -> {
-                    Text("Minha lista")
+                    Text(stringResource(R.string.my_list))
                 }
 
                 movieDetailsRouteFullpath -> {
-                    Text("Informações")
+                    Text(stringResource(R.string.information_s))
                 }
 
                 homeRoute -> {

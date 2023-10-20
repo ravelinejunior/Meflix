@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Anyflix</string>
+    <string name="my_list">My List</string>
+    <string name="information_s">Information\'s</string>
 </resources>
