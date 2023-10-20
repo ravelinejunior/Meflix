@@ -35,8 +35,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
-import br.com.raveline.anyflix.model.Movie
-import br.com.raveline.anyflix.sampleData.sampleMovies
+import br.com.raveline.anyflix.data.model.Movie
+import br.com.raveline.anyflix.data.sampleData.sampleMovies
 import br.com.raveline.anyflix.ui.theme.AnyFlixTheme
 import br.com.raveline.anyflix.ui.uistates.MyListUiState
 import coil.compose.AsyncImage

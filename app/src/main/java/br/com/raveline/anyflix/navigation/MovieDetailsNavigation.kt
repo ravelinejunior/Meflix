@@ -9,7 +9,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
-import br.com.raveline.anyflix.model.Movie
+import br.com.raveline.anyflix.data.model.Movie
 import br.com.raveline.anyflix.ui.screens.MovieDetailsScreen
 import br.com.raveline.anyflix.ui.viewmodels.MovieDetailsViewModel
 import kotlinx.coroutines.launch

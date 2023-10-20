@@ -1,0 +1,51 @@
+package br.com.raveline.anyflix.data.repository.movieRepository
+
+import android.util.Log
+import br.com.raveline.anyflix.data.database.dao.MovieDao
+import br.com.raveline.anyflix.data.database.entities.toMovie
+import br.com.raveline.anyflix.data.model.Movie
+import br.com.raveline.anyflix.data.network.services.MovieService
+import br.com.raveline.anyflix.data.network.services.toMovieEntity
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
+import javax.inject.Inject
+import kotlin.coroutines.coroutineContext
+
+class MovieRepository @Inject constructor(
+    private val dao: MovieDao,
+    private val service: MovieService
+) {
+    private val TAG: String = MovieRepository::class.java.simpleName
+
+    suspend fun findMovieSections(): Flow<Map<String, List<Movie>>> {
+
+        CoroutineScope(coroutineContext).launch(IO) {
+            val response = service.getAllMovies()
+            val entities = response.map { it.toMovieEntity() }
+            if (entities.isNotEmpty()) {
+                dao.saveAllMovies(*entities.toTypedArray())
+            } else {
+                Log.i(TAG + "_findMovieSections", "No movie found to save.")
+            }
+        }
+
+        return dao.findAll().map { entities ->
+            val movies = entities.map { it.toMovie() }
+            if (movies.isEmpty()) {
+                Log.i(TAG + "_findMovieSections", "No movie found.")
+                emptyMap()
+            } else {
+                createSections(movies)
+            }
+        }
+    }
+
+    private fun createSections(movies: List<Movie>) = mapOf(
+        "Trends" to movies.shuffled().take(7),
+        "News" to movies.shuffled().take(7),
+        "Keep Watching" to movies.shuffled().take(7)
+    )
+}

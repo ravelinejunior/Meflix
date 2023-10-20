@@ -2,8 +2,8 @@ package br.com.raveline.anyflix.di.modules
 
 import android.content.Context
 import androidx.room.Room
-import br.com.raveline.anyflix.database.AnyflixDatabase
-import br.com.raveline.anyflix.database.dao.MovieDao
+import br.com.raveline.anyflix.data.database.AnyflixDatabase
+import br.com.raveline.anyflix.data.database.dao.MovieDao
 import br.com.raveline.anyflix.utils.databaseName
 import dagger.Module
 import dagger.Provides

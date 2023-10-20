@@ -1,6 +1,6 @@
-package br.com.raveline.anyflix.model
+package br.com.raveline.anyflix.data.model
 
-import br.com.raveline.anyflix.database.entities.MovieEntity
+import br.com.raveline.anyflix.data.database.entities.MovieEntity
 import java.util.UUID
 
 data class Movie(

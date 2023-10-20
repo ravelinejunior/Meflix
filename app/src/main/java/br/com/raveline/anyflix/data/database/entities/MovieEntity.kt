@@ -1,8 +1,8 @@
-package br.com.raveline.anyflix.database.entities
+package br.com.raveline.anyflix.data.database.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import br.com.raveline.anyflix.model.Movie
+import br.com.raveline.anyflix.data.model.Movie
 import java.util.UUID
 
 @Entity(tableName = "movies")

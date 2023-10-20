@@ -1,7 +1,7 @@
-package br.com.raveline.anyflix.sampleData
+package br.com.raveline.anyflix.data.sampleData
 
 import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
-import br.com.raveline.anyflix.model.Movie
+import br.com.raveline.anyflix.data.model.Movie
 import kotlin.random.Random
 
 val randomImage
