@@ -13,3 +13,4 @@
 .externalNativeBuild
 .cxx
 local.properties
+/app/schemas/br.com.raveline.anyflix.data.database.AnyflixDatabase/1.json
