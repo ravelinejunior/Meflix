@@ -8,9 +8,11 @@ import br.com.raveline.anyflix.data.network.services.MovieService
 import br.com.raveline.anyflix.data.network.services.toMovieEntity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
+import java.net.ConnectException
 import javax.inject.Inject
 import kotlin.coroutines.coroutineContext
 
@@ -23,13 +25,19 @@ class MovieRepository @Inject constructor(
     suspend fun findMovieSections(): Flow<Map<String, List<Movie>>> {
 
         CoroutineScope(coroutineContext).launch(IO) {
-            val response = service.getAllMovies()
-            val entities = response.map { it.toMovieEntity() }
-            if (entities.isNotEmpty()) {
-                dao.saveAllMovies(*entities.toTypedArray())
-            } else {
-                Log.i(TAG + "_findMovieSections", "No movie found to save.")
-            }
+           try {
+               val response = service.getAllMovies()
+               val entities = response.map { it.toMovieEntity() }
+               if (entities.isNotEmpty()) {
+                   dao.saveAllMovies(*entities.toTypedArray())
+               } else {
+                   Log.i(TAG + "_findMovieSections", "No movie found to save.")
+               }
+           }catch (e:ConnectException){
+               Log.e(TAG + "_findMovieSections", "ConnectException throw: ${e.message}")
+           }catch (e:Exception){
+               Log.e(TAG + "_findMovieSections", "Exception throw: ${e.message}")
+           }
         }
 
         return dao.findAll().map { entities ->
