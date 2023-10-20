@@ -1,6 +1,7 @@
-package br.com.raveline.anyflix.network.services
+package br.com.raveline.anyflix.data.network.services
 
-import br.com.raveline.anyflix.model.Movie
+import br.com.raveline.anyflix.data.database.entities.MovieEntity
+import br.com.raveline.anyflix.data.model.Movie
 import br.com.raveline.anyflix.utils.movieApiServiceRequestKey
 import retrofit2.http.GET
 
@@ -13,7 +14,17 @@ data class MovieResponse(
     val inMyList: Boolean
 )
 
-fun MovieResponse.toMovie() : Movie =
+fun MovieResponse.toMovieEntity(): MovieEntity =
+    MovieEntity(
+        id = id,
+        title = title,
+        year = year,
+        plot = plot,
+        image = image,
+        inMyList = inMyList,
+    )
+
+fun MovieResponse.toMovie(): Movie =
     Movie(
         id = id,
         title = title,

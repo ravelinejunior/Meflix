@@ -1,9 +1,9 @@
-package br.com.raveline.anyflix.database
+package br.com.raveline.anyflix.data.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import br.com.raveline.anyflix.database.dao.MovieDao
-import br.com.raveline.anyflix.database.entities.MovieEntity
+import br.com.raveline.anyflix.data.database.dao.MovieDao
+import br.com.raveline.anyflix.data.database.entities.MovieEntity
 
 @Database(
     version = 1,

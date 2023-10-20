@@ -1,4 +1,4 @@
-package br.com.raveline.anyflix.activity
+package br.com.raveline.anyflix.ui.activity
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

@@ -1,6 +1,6 @@
 package br.com.raveline.anyflix.ui.uistates
 
-import br.com.raveline.anyflix.model.Movie
+import br.com.raveline.anyflix.data.model.Movie
 
 sealed class MovieDetailsUiState {
 

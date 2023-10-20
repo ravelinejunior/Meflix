@@ -1,6 +1,6 @@
 package br.com.raveline.anyflix.di.modules
 
-import br.com.raveline.anyflix.network.services.MovieService
+import br.com.raveline.anyflix.data.network.services.MovieService
 import br.com.raveline.anyflix.utils.baseUrlMovie
 import dagger.Module
 import dagger.Provides

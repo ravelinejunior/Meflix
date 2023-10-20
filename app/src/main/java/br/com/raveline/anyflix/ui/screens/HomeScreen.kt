@@ -28,9 +28,9 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import br.com.raveline.anyflix.model.Movie
-import br.com.raveline.anyflix.sampleData.sampleMovieSections
-import br.com.raveline.anyflix.sampleData.sampleMovies
+import br.com.raveline.anyflix.data.model.Movie
+import br.com.raveline.anyflix.data.sampleData.sampleMovieSections
+import br.com.raveline.anyflix.data.sampleData.sampleMovies
 import br.com.raveline.anyflix.ui.components.AnyflixMainBanner
 import br.com.raveline.anyflix.ui.theme.AnyFlixTheme
 import br.com.raveline.anyflix.ui.uistates.HomeUiState

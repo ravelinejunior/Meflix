@@ -3,9 +3,9 @@ package br.com.raveline.anyflix.ui.viewmodels
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import br.com.raveline.anyflix.database.dao.MovieDao
-import br.com.raveline.anyflix.database.entities.toMovie
-import br.com.raveline.anyflix.model.Movie
+import br.com.raveline.anyflix.data.database.dao.MovieDao
+import br.com.raveline.anyflix.data.database.entities.toMovie
+import br.com.raveline.anyflix.data.model.Movie
 import br.com.raveline.anyflix.navigation.movieIdArgument
 import br.com.raveline.anyflix.ui.uistates.MovieDetailsUiState
 import br.com.raveline.anyflix.ui.uistates.MovieDetailsUiState.Success
