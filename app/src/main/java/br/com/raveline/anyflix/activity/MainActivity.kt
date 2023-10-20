@@ -62,9 +62,6 @@ class MainActivity : ComponentActivity() {
 
         lifecycleScope.launch(IO) {
             val movies = movieService.getAllMovies()
-            for (movie in movies) {
-                Log.i(TAG, "Movie: $movie\n")
-            }
         }
 
         setContent {
