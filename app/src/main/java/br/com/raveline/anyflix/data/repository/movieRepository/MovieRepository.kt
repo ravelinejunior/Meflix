@@ -84,10 +84,6 @@ class MovieRepository @Inject constructor(
         }
     }
 
-    fun removeFromMyList(id: String) {
-        // TODO: Implement function
-    }
-
     suspend fun getMovieById(id: String): Flow<Movie> {
         CoroutineScope(coroutineContext).launch(IO) {
             try {
@@ -95,11 +91,11 @@ class MovieRepository @Inject constructor(
                 val entity = response.toMovieEntity()
                 dao.save(entity)
             } catch (e: ConnectException) {
-                Log.e(TAG + "_myList", "ConnectException throw: ${e.message}")
+                Log.e(TAG + "_getMovieById", "ConnectException throw: ${e.message}")
             } catch (e: SocketTimeoutException) {
-                Log.e(TAG + "_myList", "SocketTimeoutException throw: ${e.message}")
+                Log.e(TAG + "_getMovieById", "SocketTimeoutException throw: ${e.message}")
             } catch (e: Exception) {
-                Log.e(TAG + "_myList", "Exception throw: ${e.message}")
+                Log.e(TAG + "_getMovieById", "Exception throw: ${e.message}")
             }
         }
 
@@ -112,7 +108,40 @@ class MovieRepository @Inject constructor(
     fun getSuggestedMovie(id: String): Flow<List<Movie>> =
         dao.suggestedMovies(id)
 
-    fun addToMyList(id: String) {
-        // TODO: Implement function
+    suspend fun addToMyList(id: String) {
+        CoroutineScope(coroutineContext).launch(IO) {
+            try {
+                service.addMovieToMyList(id)
+                dao.addToMyList(id)
+            } catch (e: ConnectException) {
+                Log.e(TAG + "_addToMyList", "ConnectException throw: ${e.message}")
+            } catch (e: SocketTimeoutException) {
+                Log.e(TAG + "_addToMyList", "SocketTimeoutException throw: ${e.message}")
+            } catch (e: Exception) {
+                Log.e(TAG + "_addToMyList", "Exception throw: ${e.message}")
+            }
+        }
     }
+
+    suspend fun removeFromMyList(id: String) {
+        CoroutineScope(coroutineContext).launch(IO) {
+            try {
+                service.removeMovieFromMyList(id)
+                dao.removeFromMyList(id)
+            } catch (e: ConnectException) {
+                Log.e(TAG + "_removeFromMyList", "ConnectException throw: ${e.message}")
+            } catch (e: SocketTimeoutException) {
+                Log.e(TAG + "_removeFromMyList", "SocketTimeoutException throw: ${e.message}")
+            } catch (e: Exception) {
+                Log.e(TAG + "_removeFromMyList", "Exception throw: ${e.message}")
+            }
+        }
+    }
+
 }
+
+
+
+
+
+
