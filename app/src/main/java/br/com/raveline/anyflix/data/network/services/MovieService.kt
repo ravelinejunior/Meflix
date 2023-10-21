@@ -2,10 +2,14 @@ package br.com.raveline.anyflix.data.network.services
 
 import br.com.raveline.anyflix.data.database.entities.MovieEntity
 import br.com.raveline.anyflix.data.model.Movie
+import br.com.raveline.anyflix.utils.movieAddApiServiceRequestKey
 import br.com.raveline.anyflix.utils.movieApiServiceRequestKey
 import br.com.raveline.anyflix.utils.movieIdApiServiceRequestKey
+import br.com.raveline.anyflix.utils.movieRemoveApiServiceRequestKey
 import br.com.raveline.anyflix.utils.myListApiServiceRequestKey
+import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.PUT
 import retrofit2.http.Path
 
 interface MovieService {
@@ -18,6 +22,12 @@ interface MovieService {
 
     @GET(movieIdApiServiceRequestKey)
     suspend fun getMoviesById(@Path("id") id: String): MovieResponse
+
+    @PUT("${movieRemoveApiServiceRequestKey}{id}")
+    suspend fun removeMovieFromMyList(@Path("id") id: String): Response<Void>
+
+    @PUT("${movieAddApiServiceRequestKey}{id}")
+    suspend fun addMovieToMyList(@Path("id") id: String): Response<Void>
 }
 
 data class MovieResponse(
