@@ -59,10 +59,10 @@ class MovieRepository @Inject constructor(
         "Keep Watching" to movies.shuffled().take(7)
     )
 
-    suspend fun myList(): Flow<List<Movie>> {
+    suspend fun getMyList(): Flow<List<Movie>> {
         CoroutineScope(coroutineContext).launch(IO) {
             try {
-                val response = service.myMovieList()
+                val response = service.getMyMovieList()
                 val entities = response.map { it.toMovieEntity() }
                 if (entities.isNotEmpty()) {
                     dao.saveAllMovies(*entities.toTypedArray())
@@ -84,7 +84,35 @@ class MovieRepository @Inject constructor(
         }
     }
 
-    fun removeFromMyList(id:String){
+    fun removeFromMyList(id: String) {
+        // TODO: Implement function
+    }
+
+    suspend fun getMovieById(id: String): Flow<Movie> {
+        CoroutineScope(coroutineContext).launch(IO) {
+            try {
+                val response = service.getMoviesById(id)
+                val entity = response.toMovieEntity()
+                dao.save(entity)
+            } catch (e: ConnectException) {
+                Log.e(TAG + "_myList", "ConnectException throw: ${e.message}")
+            } catch (e: SocketTimeoutException) {
+                Log.e(TAG + "_myList", "SocketTimeoutException throw: ${e.message}")
+            } catch (e: Exception) {
+                Log.e(TAG + "_myList", "Exception throw: ${e.message}")
+            }
+        }
+
+        return dao.findMovieById(id)
+            .map {
+                it.toMovie()
+            }
+    }
+
+    fun getSuggestedMovie(id: String): Flow<List<Movie>> =
+        dao.suggestedMovies(id)
+
+    fun addToMyList(id: String) {
         // TODO: Implement function
     }
 }

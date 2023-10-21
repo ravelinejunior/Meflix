@@ -33,7 +33,7 @@ class MyListViewModel @Inject constructor(
         currentUiStateJob?.cancel()
         currentUiStateJob = viewModelScope.launch {
 
-            repository.myList()
+            repository.getMyList()
                 .onStart {
                     _uiState.update { MyListUiState.Loading }
                 }.collect { movies ->

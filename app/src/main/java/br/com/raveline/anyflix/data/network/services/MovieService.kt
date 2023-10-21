@@ -3,8 +3,10 @@ package br.com.raveline.anyflix.data.network.services
 import br.com.raveline.anyflix.data.database.entities.MovieEntity
 import br.com.raveline.anyflix.data.model.Movie
 import br.com.raveline.anyflix.utils.movieApiServiceRequestKey
+import br.com.raveline.anyflix.utils.movieIdApiServiceRequestKey
 import br.com.raveline.anyflix.utils.myListApiServiceRequestKey
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 interface MovieService {
 
@@ -12,7 +14,10 @@ interface MovieService {
     suspend fun getAllMovies(): List<MovieResponse>
 
     @GET(myListApiServiceRequestKey)
-    suspend fun myMovieList():List<MovieResponse>
+    suspend fun getMyMovieList(): List<MovieResponse>
+
+    @GET(movieIdApiServiceRequestKey)
+    suspend fun getMoviesById(@Path("id") id: String): MovieResponse
 }
 
 data class MovieResponse(
