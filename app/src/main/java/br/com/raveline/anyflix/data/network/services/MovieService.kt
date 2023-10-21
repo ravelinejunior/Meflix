@@ -3,7 +3,17 @@ package br.com.raveline.anyflix.data.network.services
 import br.com.raveline.anyflix.data.database.entities.MovieEntity
 import br.com.raveline.anyflix.data.model.Movie
 import br.com.raveline.anyflix.utils.movieApiServiceRequestKey
+import br.com.raveline.anyflix.utils.myListApiServiceRequestKey
 import retrofit2.http.GET
+
+interface MovieService {
+
+    @GET(movieApiServiceRequestKey)
+    suspend fun getAllMovies(): List<MovieResponse>
+
+    @GET(myListApiServiceRequestKey)
+    suspend fun myMovieList():List<MovieResponse>
+}
 
 data class MovieResponse(
     val id: String,
@@ -34,7 +44,3 @@ fun MovieResponse.toMovie(): Movie =
         inMyList = inMyList
     )
 
-interface MovieService {
-    @GET(movieApiServiceRequestKey)
-    suspend fun getAllMovies(): List<MovieResponse>
-}
