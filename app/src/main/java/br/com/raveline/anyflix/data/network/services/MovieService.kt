@@ -20,7 +20,7 @@ interface MovieService {
     @GET(myListApiServiceRequestKey)
     suspend fun getMyMovieList(): List<MovieResponse>
 
-    @GET(movieIdApiServiceRequestKey)
+    @GET("$movieIdApiServiceRequestKey{id}")
     suspend fun getMoviesById(@Path("id") id: String): MovieResponse
 
     @PUT("${movieRemoveApiServiceRequestKey}{id}")
